@@ -2,11 +2,14 @@
 
 ## Introduction
 
-SampleCode For[GoogleCloudDataflow](https://cloud.google.com/dataflow/)
+SampleCode For [GoogleCloudDataflow](https://cloud.google.com/dataflow/)
 This Sample inserts data from PubSubMessage To BigQuery.
+It is partitioned by day (tableName_YYYYMMdd) and Inserted.
 
 ## Configuration
 
+this project managed by maven.
+if you need change profile to switched configuration,such as tableName.
 Please switch profiles with maven.
 default profile is dev.
 
