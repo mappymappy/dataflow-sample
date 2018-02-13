@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.mycompany</groupId>
+    <artifactId>dataflow_sample</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.2</version>
+        </dependency>
+        <dependency>
+          <groupId>com.google.cloud.dataflow</groupId>
+          <artifactId>google-cloud-dataflow-java-sdk-all</artifactId>
+          <version>[2.1.0, 2.99)</version>
+        </dependency>
+    </dependencies>
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <target.project>YOUR_PROJECT_NAME</target.project>
+                <target.subscription>YOUR_SUBSCRIPTION_PATH</target.subscription>
+                <target.bigquery.table>PROJECT_NAME:DATASET_NAME.TABLE_NAME</target.bigquery.table>
+                <target.templocation>YOUR_GCS_LOCATION FOR TEMP(example: gs://hoge/tmp) </target.templocation>
+                <target.jobname>YOUR_DATAFLOW_JOBNAME</target.jobname>
+                <target.staginglocation>YOUR_GCS_LOCATION FOR STAGING (example: gs://hoge/staging)</target.staginglocation>
+            </properties>
+        </profile>
+        <profile>
+            <id>production</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <target.project>YOUR_PROJECT_NAME</target.project>
+                <target.subscription>YOUR_SUBSCRIPTION_PATH</target.subscription>
+                <target.bigquery.table>PROJECT_NAME:DATASET_NAME.TABLE_NAME</target.bigquery.table>
+                <target.templocation>YOUR_GCS_LOCATION FOR TEMP(example: gs://hoge/tmp) </target.templocation>
+                <target.jobname>YOUR_DATAFLOW_JOBNAME</target.jobname>
+                <target.staginglocation>YOUR_GCS_LOCATION FOR STAGING (example: gs://hoge/staging)</target.staginglocation>
+            </properties>
+        </profile>
+        <profile>
+            <id>stage</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <target.project>YOUR_PROJECT_NAME</target.project>
+                <target.subscription>YOUR_SUBSCRIPTION_PATH</target.subscription>
+                <target.bigquery.table>PROJECT_NAME:DATASET_NAME.TABLE_NAME</target.bigquery.table>
+                <target.templocation>YOUR_GCS_LOCATION FOR TEMP(example: gs://hoge/tmp) </target.templocation>
+                <target.jobname>YOUR_DATAFLOW_JOBNAME</target.jobname>
+                <target.staginglocation>YOUR_GCS_LOCATION FOR STAGING (example: gs://hoge/staging)</target.staginglocation>
+            </properties>
+        </profile> 
+    </profiles>
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+</project>
